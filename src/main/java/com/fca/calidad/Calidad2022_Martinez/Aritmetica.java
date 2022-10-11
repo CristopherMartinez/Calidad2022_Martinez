@@ -8,14 +8,17 @@ public class Aritmetica {
 	}
 	
 	public float resta(float minuendo, float sustraendo) {
-		return ultimoResultado = minuendo + sustraendo;
+		return ultimoResultado = minuendo - sustraendo;
 	}
 	
 	public float multiplicacion(float primerFactor, float segundoFactor) {
-		return ultimoResultado = primerFactor * primerFactor;
+		return ultimoResultado = primerFactor * segundoFactor;
 	}
 	
 	public float division(float dividendo, float divisor) {
+		return ultimoResultado = dividendo / divisor;
+	}
+	public float divisionEntera(int dividendo, int divisor) {
 		return ultimoResultado = dividendo / divisor;
 	}
 	
