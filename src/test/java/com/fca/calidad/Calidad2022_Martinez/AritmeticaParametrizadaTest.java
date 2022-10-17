@@ -10,6 +10,7 @@ import org.junit.runners.Parameterized.Parameters;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -32,15 +33,18 @@ public class AritmeticaParametrizadaTest {
 	@Parameters
 		public static Collection<Object[]> data(){
 			return Arrays.asList(new Object[][]{
-				{4,2,8},
-				{6,-3,-18},
-				{-5,-5,25}
+				{4,2,2},
+				{6,-3,-2},
+				{5,5,1},
+				{5,5,2.5f},
+				{5,-2,-2.5f}
 			});
 		}
 		
 
 	@Before
 	public void setUp() throws Exception {
+		aritmetica = new Aritmetica();
 	}
 
 	@After
@@ -50,6 +54,11 @@ public class AritmeticaParametrizadaTest {
 	@Test
 	public void test() {
 		//fail("Not yet implemented");
+	}
+	
+	public void Division_test() {
+		float resEjecucion = aritmetica.division(this.arg1,this.arg2);
+		assertThat(this.expected, is(resEjecucion));
 	}
 
 }
