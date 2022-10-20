@@ -1,6 +1,5 @@
 package com.fca.calidad.dobles;
 
-
 public class Dependency {
 	private final SubDependency subDependency;
 
@@ -29,4 +28,9 @@ public class Dependency {
 	{
 		return getClassName().toUpperCase();
 	}
+	
+	
+
+	
+	
 }
