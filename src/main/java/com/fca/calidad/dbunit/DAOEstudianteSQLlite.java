@@ -15,7 +15,7 @@ public class DAOEstudianteSQLlite implements IDAOEstudiante {
 	
 
 	private static final String DRIVER_NAME = "org.sqlite.JDBC";
-	private static final String DB_URL = "jdbc:sqlite:C:\\Users\\fca\\Documents\\MartinezCristopher\\Calidad2022_Martinez\\Calidad2022_Martinez\\src\\resources\\Alumnos.db";
+	private static final String DB_URL = "jdbc:sqlite:C:\\Users\\Fca\\Documents\\Calidad2022_Cristopher\\Calidad2022_Martinez\\src\\resources\\Alumnos.db";
 	private static final String ID= "";
 	private static final String PASS= "";
 	
