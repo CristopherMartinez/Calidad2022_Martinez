@@ -8,6 +8,9 @@ import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.time.Duration;
@@ -20,7 +23,9 @@ public class GoogleTest {
 	  JavascriptExecutor js;
 	  @Before
 	  public void setUp() throws Exception {
-	    System.setProperty("webdriver.chrome.driver", "");
+	    //System.setProperty("webdriver.chrome.driver", "");
+	    WebDriverManager.chromedriver().setup();
+	    
 	    driver = new ChromeDriver();
 	    baseUrl = "https://www.google.com/";
 	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
@@ -34,11 +39,11 @@ public class GoogleTest {
 	    driver.get("https://www.google.com/");
 	    driver.findElement(By.name("q")).sendKeys(Keys.DOWN);
 	    driver.findElement(By.name("q")).clear();
-	    driver.findElement(By.name("q")).sendKeys("yucatan i6");
+	    driver.findElement(By.name("q")).sendKeys("Yucatáni6");
 	    driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
 	    driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div/div/div/a/div/cite")).click();
 	    driver.get("https://siies.yucatan.gob.mx/yucatani6/");
-	    assertEquals("Yucatáni6asdad", driver.getTitle());
+	    assertEquals("Yucatáni6", driver.getTitle());
 	  }
 
 	  @After

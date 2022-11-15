@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\fca\Documents\Calidad2022_Martinez\Calidad2022_Martinez"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

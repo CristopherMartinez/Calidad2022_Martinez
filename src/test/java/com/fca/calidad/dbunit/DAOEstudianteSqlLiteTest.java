@@ -51,7 +51,7 @@ public class DAOEstudianteSqlLiteTest extends TestCase{
 		Connection jdbcConnection;
 		
 		jdbcConnection = DriverManager.getConnection
-				("jdbc:sqlite:C:\\Users\\Fca\\Documents\\Calidad2022_Cristopher\\Calidad2022_Martinez\\src\\resources\\Alumnos.db");
+				("jdbc:sqlite:C:\\Users\\fca\\Documents\\Calidad2022_Martinez\\Calidad2022_Martinez\\src\\resources\\Alumnos.db");
 		
 		connection = new DatabaseConnection(jdbcConnection);
 		
