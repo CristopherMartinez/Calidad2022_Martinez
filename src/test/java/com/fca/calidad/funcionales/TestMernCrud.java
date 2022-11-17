@@ -16,6 +16,14 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.time.Duration;
 
+/*import org.junit.Test;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
+ 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)*/
+
+
+
 public class TestMernCrud {
   private WebDriver driver;
   private String baseUrl;
@@ -33,7 +41,7 @@ public class TestMernCrud {
 
   //Test para agregar al MERN CRUD
   @Test
-  public void testMernCrudAgregar() throws Exception {
+  public void FirsttestMernCrudAgregar() throws Exception {
     //ERROR: Caught exception [unknown command []]
     driver.get("http://mern-crud.herokuapp.com/");
     pause(30);
@@ -65,13 +73,24 @@ public class TestMernCrud {
     assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Pruebaagregar[\\s\\S]*$"));
   }
   
+  /*@Test
+  public void SecondtestMernCrudEditar() throws Exception {
+
+	  System.out.println("Second test");
+	  
+	  
+  }*/
+  
   @Test
-  public void testMernCrudEliminar() throws Exception {
+  //public void ThirdtestMernCrudEliminar() throws Exception {
 
 	  
+	//  System.out.println("third Test");
 	  
-	  
-  }
+  //}
+  
+ 
+  
   
   
   
