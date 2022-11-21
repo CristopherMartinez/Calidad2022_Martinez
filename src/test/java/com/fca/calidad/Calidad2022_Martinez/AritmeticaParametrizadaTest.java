@@ -17,34 +17,31 @@ import java.util.Collection;
 
 @RunWith(Parameterized.class)
 public class AritmeticaParametrizadaTest {
-	private float arg1;
-	private float arg2;
-	private float expected;
-	private Aritmetica aritmetica;
+	private double arg1;
+	private double arg2;
+	private double arg3;
+	private Aritmetica miAritmetica;
 	
-	
-	public AritmeticaParametrizadaTest (float arg1, float arg2, float expected) {
+	public AritmeticaParametrizadaTest(double arg1, double arg2, double arg3) {
 		this.arg1 = arg1;
-		this.arg1 = arg1;
-		this.expected = expected;
-		
+		this.arg2 = arg2;
+		this.arg3 = arg3;
 	}
 	
 	@Parameters
-		public static Collection<Object[]> data(){
-			return Arrays.asList(new Object[][]{
-				{4,2,2},
-				{6,-3,-2},
-				{5,5,1},
-				{5,5,2.5f},
-				{5,-2,-2.5f}
-			});
-		}
-		
+	public static Collection<Object[]> data(){
+		return Arrays.asList(new Object[][] {
+			{4, 2, 2},
+			{6, -3, -2},
+			{5, 5, 1},
+			{5, 2, 2.5f},
+			{5, -2, -2.5f}
+		});
+	}
 
 	@Before
 	public void setUp() throws Exception {
-		aritmetica = new Aritmetica();
+		miAritmetica = new Aritmetica();
 	}
 
 	@After
@@ -52,13 +49,9 @@ public class AritmeticaParametrizadaTest {
 	}
 
 	@Test
-	public void test() {
-		//fail("Not yet implemented");
-	}
-	
-	public void Division_test() {
-		float resEjecucion = aritmetica.division(this.arg1,this.arg2);
-		assertThat(this.expected, is(resEjecucion));
+	public void divisionTest() {
+		double resEjecucion = miAritmetica.division(this.arg1, this.arg2);
+		assertThat(this.arg3, is(resEjecucion));
 	}
 
 }

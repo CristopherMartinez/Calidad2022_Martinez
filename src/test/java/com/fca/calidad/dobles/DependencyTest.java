@@ -24,10 +24,6 @@ public class DependencyTest {
 	dependency = Mockito.mock(Dependency.class);
 	}
 	
-	@Test
-	public void test() {
-		assertThat(dependency.getClassName(),is("Dependency"));
-	}
 
 
 	private void setBehavior() {
@@ -45,16 +41,11 @@ public class DependencyTest {
 	
 	@Test
 	public void mockArgumentTest() {
-		int expectedResult = 2;
-		int expectedResult2 = 5;
-		
-		when(dependency.addTwo(0)).thenReturn(2);
-		
+		int expectedResult = 4;	
+		when(dependency.addTwo(0)).thenReturn(4);
 		int runningResult = dependency.addTwo(0);
-		int runningResult2 = dependency.addTwo(5);
-		
 		assertThat(expectedResult, is(runningResult));
-		assertThat(expectedResult2, is(runningResult2));
+
 
 	}
 	

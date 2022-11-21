@@ -15,8 +15,8 @@ public class Aritmetica {
 		return ultimoResultado = primerFactor * segundoFactor;
 	}
 	
-	public float division(float dividendo, float divisor) {
-		return ultimoResultado = dividendo / divisor;
+	public float division(double dividendo, double divisor) {
+		return ultimoResultado = (float) (dividendo / divisor);
 	}
 	public float divisionEntera(int dividendo, int divisor) {
 		return ultimoResultado = dividendo / divisor;

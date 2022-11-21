@@ -2,6 +2,7 @@ package com.fca.calidad.DoublesDAO;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -31,8 +32,9 @@ public class FakeAlumnoDAOTest {
 	public void tearDown() throws Exception {
 	}
 
+	//Correcto
 	@Test
-	public void agregarTest() {
+	public void agregarAlumnoTest() {
 		
 		when(DAO.addAlumno(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
 			
@@ -53,20 +55,52 @@ public class FakeAlumnoDAOTest {
 		assertThat(sizeAfter,is(sizeBefore + 1));
 		
 	}
+
+	//Correcto
+	  @Test
+    public void eliminarAlumnoTest() {
+  	
+		when(DAO.deleteAlumno(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
+			
+			public Boolean answer(InvocationOnMock invocation) throws Throwable{
+				//Seteamos
+				Alumno arg = (Alumno) invocation.getArguments()[0];
+				
+				//Removemos del hashMap con metodo remove
+				baseDatos.remove(arg.getId());
+				
+				return true;
+			}
+		
+		});
+		
+		Alumno alumno1 = new Alumno("nombre","1",14,"email");
+		
+		//Ingresamos a alumno 
+		baseDatos.put("1", alumno1);
+		
+		int sizeS = baseDatos.size();
+		
+		//Borramos a alumno1 y almacenamos el valor en res 
+		Boolean res = DAO.deleteAlumno(alumno1);
+		
+		int sizeAfterDelete = baseDatos.size();
+		
+		//Verificamos
+		assertThat(sizeAfterDelete, is(sizeS - 1));
+		System.out.println("TestEliminar : " + res);
+		
 	
+	}
+	  
+	 //Correcto
 	@Test
-	public void updateEmailTest() {
+	public void actualizarAlumnoTest() {
 		when(DAO.updateEmail(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
 			
 			public Boolean answer(InvocationOnMock invocation) throws Throwable{
 				Alumno arg = (Alumno) invocation.getArguments()[0];
-				//Set behavior in every invocation
-				Alumno alumno = new Alumno("nombre","id",14,"email");
-				//Agregar a un alumno
-				baseDatos.put("1", alumno);
-				//Guardar el nuevo alumno en el mismo
 				baseDatos.put(arg.getId(), arg);
-				
 				return true;
 			}
 		
@@ -87,54 +121,46 @@ public class FakeAlumnoDAOTest {
 		
 		//Lo comparamos con assertThat
 		assertThat(valorEsperado, is(valorEjecucion));
+		
+		System.out.print("TestActualizar : " + DAO.updateEmail(alumno));
 	}
 	
-	
+      //Correcto
 	  @Test
-      public void deleteTest() {
-    	
-		when(DAO.deleteAlumno(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
-			
-			public Boolean answer(InvocationOnMock invocation) throws Throwable{
-				Alumno arg = (Alumno) invocation.getArguments()[0];
-				baseDatos.put("1", arg);
-				//System.out.println("Tamaño de base datos: " + baseDatos.size());
-				return true;
-			}
-		
-		});
-		
-		Alumno a = new Alumno("nombre","id",14,"email");
-		String id = a.getId();
-		
-		DAO.deleteAlumno(a);
-		
-		int sizeAfter = baseDatos.size();
-		int valorEsperado = 1;
-		
-		assertThat(sizeAfter,is(valorEsperado));
-	
-	}
-	  
-	  @Test
-	  public void searchTest() {
-		  when(DAO.addAlumno(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
-				
-				public Boolean answer(InvocationOnMock invocation) throws Throwable{
-					Alumno arg = (Alumno) invocation.getArguments()[0];
-					baseDatos.put("1", arg);
-					System.out.println("Tamaño despues = " + baseDatos.size() + "\n");
-					return true;
+	  public void buscarAlumnoTest() {
+		  when(DAO.searchAlumno(anyString())).thenAnswer(new Answer<Alumno>() {
+				public Alumno answer(InvocationOnMock invocation) throws Throwable{
+					// Set behavior
+					String id = (String) invocation.getArguments()[0];
+					Alumno a = baseDatos.get(id);
+					return a;
 				}
-			
 			});
 			
-			Alumno a = new Alumno("nombre","id",14,"email");
-			int sizeBefore = baseDatos.size();
-			Boolean res = DAO.addAlumno(a);
-			int sizeAfter = baseDatos.size();
+		  	//Creamos un nuevo alumno
+			Alumno a = new Alumno("nombre","1",14,"email");
+			//Agregamos a la base de datos
+			baseDatos.put("1", a);
 			
-			assertThat(sizeAfter,is(sizeBefore + 1));
+			//Llamamos a metodo buscarAlumno
+			Alumno res = DAO.searchAlumno("1");
+			
+			//Verificamos
+			String nomEsperado = res.getNombre();
+			String idEsperado = res.getId();
+			int edadEsperado = res.getEdad();
+			String emailEsperado = res.getEmail();
+			String nomEjecucion = baseDatos.get("1").getNombre();
+			String idEjecucion = baseDatos.get("1").getId();
+			int edadEjecucion = baseDatos.get("1").getEdad();
+			String emailEjecucion = baseDatos.get("1").getEmail();
+			
+			//Verificamos cada dato
+			assertThat(nomEsperado,is(nomEjecucion));
+			assertThat(idEsperado,is(idEjecucion));
+			assertThat(edadEsperado,is(edadEjecucion));
+			assertThat(emailEsperado,is(emailEjecucion));
+			System.out.print("TestBuscar : " + res);
 	  }
       
       
