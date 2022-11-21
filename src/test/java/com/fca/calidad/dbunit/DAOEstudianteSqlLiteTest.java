@@ -16,16 +16,14 @@ import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.fca.calidad.dbunit.DAOEstudianteSQLlite;
-import com.fca.calidad.dbunit.Estudiante;
-
 import static org.hamcrest.MatcherAssert.assertThat; 
 import static org.hamcrest.Matchers.*;
-//import com.anahuac.calidad.curdMOCK.*;
-
-
 import junit.framework.TestCase;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
+ 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+
 public class DAOEstudianteSqlLiteTest extends TestCase{
 
 	
@@ -93,37 +91,13 @@ public class DAOEstudianteSqlLiteTest extends TestCase{
 	public IDatabaseConnection getConnection()  {
 		return connection;
 	}
-
-	/*//CORRECTO
-	@Test
-	public void testCrear() {
-		Estudiante alumno = new Estudiante ("alumno004","alumno004apellido","holaalummno004@hola" ,"carrera4");
-		
-		int id = daoSQLite.createEstudiante(alumno);
-		alumno.setId(id);
-		
-		//verify
-		int numEsperado = 4; //sabemos que iniciamos con 3 y agregamos una mas
-		int numReal = -1;
-		try {
-			IDataSet databaseDataSet = getConnection().createDataSet(); //esta es toda la base de datos
-			
-			ITable actualTable = databaseDataSet.getTable("Estudiante"); //esta es la tabla que estamos usando
-			
-			numReal = actualTable.getRowCount(); //número de filas
-			//verificar
-			assertThat(numEsperado,is(numReal));			
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			fail("Error in insert ttest: " + e.getMessage());
-		}
-	}*/
+	
+	//TEST 
+	//CORRECTO
 	
 	@Test
 	public void testCrear() {
-		Estudiante alumno = new Estudiante ("alumno004","alumno004apellido","holaalummno004@hola" ,"carrera4");
+		Estudiante alumno = new Estudiante ("alumno004","alumnoap004","email004" ,"carrera4");
 		
 		int id = daoSQLite.createEstudiante(alumno);
 		alumno.setId(id);
@@ -146,33 +120,35 @@ public class DAOEstudianteSqlLiteTest extends TestCase{
 			fail("Error in insert ttest: " + e.getMessage());
 		}
 	}
-	
-	/*
 	@Test
-	public void testBuscar() {
+	 public void testFind() throws Exception {
 		Estudiante alumno;
-		alumno = daoSQLite.findEstudiante(0);
+		alumno = daoSQLite.findEstudiante(1);
 		
 		try {
 			ITable actualTable = getConnection().createQueryTable(
 	                "Estudiante",
-	                "SELECT * FROM Estudiante WHERE id =1"); //tabla con los resultados del query
+	                "SELECT * FROM Estudiante WHERE id = 1"); //tabla con los resultados del query
 			assertThat(alumno.getApellido(), is (actualTable.getValue(1, "apellido")));
 			assertThat(alumno.getCarrera(), is (actualTable.getValue(1, "carrera")));
 			assertThat(alumno.getNombre(), is (actualTable.getValue(1, "nombre")));
+			
+			//verificar
+					
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			fail("Error in insert ttest: " + e.getMessage());
 		}
-	}
+		}
 	
 	@Test
-	public void testUpdate() {
+	public void testUpdate() throws Exception{
 	 
 		DAOEstudianteSQLlite daoSQLite = new DAOEstudianteSQLlite ();
 		
-		Estudiante Estudiante2 = daoSQLite.findEstudiante(1);
-		Estudiante2.setEmail("nuevo@mail.com");
+		Estudiante Estudiante2 = daoSQLite.findEstudiante(2);
+		Estudiante2.setEmail("martinezcristopher11@gmail.com");
 		daoSQLite.updateEmailEstudiante(Estudiante2);
 		
 		//verify
@@ -193,17 +169,22 @@ public class DAOEstudianteSqlLiteTest extends TestCase{
 			fail("Error in insert ttest: " + e.getMessage());
 		}
 	}
-	*/
+	
+	
+	
 	/*
+	 	
 	@Test
-	public void testBuscar() {
+	
+	
+	public void bTestFind() throws Exception {
 		Estudiante alumno;
-		alumno = daoSQLite.findEstudiante(0);
+		alumno = daoSQLite.findEstudiante(1);
 		
 		try {
 			ITable actualTable = getConnection().createQueryTable(
 	                "Estudiante",
-	                "SELECT * FROM Estudiante WHERE id =3"); //tabla con los resultados del query
+	                "SELECT * FROM Estudiante WHERE id = 1"); //tabla con los resultados del query
 			assertThat(alumno.getApellido(), is (actualTable.getValue(1, "apellido")));
 			assertThat(alumno.getCarrera(), is (actualTable.getValue(1, "carrera")));
 			assertThat(alumno.getNombre(), is (actualTable.getValue(1, "nombre")));
@@ -211,10 +192,90 @@ public class DAOEstudianteSqlLiteTest extends TestCase{
 			// TODO: handle exception
 			fail("Error in insert ttest: " + e.getMessage());
 		}
-	}
-	*/
+		}
 	
-	/*
+	
+		
+	
+	 
+	 @Test
+		public void testFind() {
+			Estudiante alumno;
+			alumno = daoSQLite.findEstudiante(0);
+			
+			try {
+				ITable actualTable = getConnection().createQueryTable(
+		                "Estudiante",
+		                "SELECT * FROM Estudiante WHERE id = 1"); //tabla con los resultados del query
+				assertThat(alumno.getApellido(), is (actualTable.getValue(1, "apellido")));
+				assertThat(alumno.getCarrera(), is (actualTable.getValue(1, "carrera")));
+				assertThat(alumno.getNombre(), is (actualTable.getValue(1, "nombre")));
+			} catch (Exception e) {
+				// TODO: handle exception
+				fail("Error in insert ttest: " + e.getMessage());
+			}
+		}
+	
+		@Test
+		public void testUpdate() {
+		 
+			DAOEstudianteSQLlite daoSQLite = new DAOEstudianteSQLlite ();
+			
+			Estudiante Estudiante2 = daoSQLite.findEstudiante(1);
+			Estudiante2.setEmail("nuevo12@mail.com");
+			daoSQLite.updateEmailEstudiante(Estudiante2);
+			
+			//verify
+			try {
+				IDataSet databaseDataSet = getConnection().createDataSet(); //esta es toda la base de datos
+				
+				ITable actualTable = databaseDataSet.getTable("Estudiante");
+				
+				//Leer el archivo con el resultado esperado
+				IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/resources/update_result.xml"));
+				ITable expectedTable = expectedDataSet.getTable("Estudiante");
+				
+				Assertion.assertEquals(expectedTable, actualTable);
+				
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				fail("Error in insert ttest: " + e.getMessage());
+			}
+		}
+		
+	  
+	@Test
+	public void ActualizarTest() {
+	 
+		DAOEstudianteSQLlite daoSQLite = new DAOEstudianteSQLlite ();
+		
+		Estudiante Estudiante2 = daoSQLite.findEstudiante(1);
+		Estudiante2.setEmail("nuevo1@mail.com");
+		daoSQLite.updateEmailEstudiante(Estudiante2);
+		
+		//verify
+		try {
+			IDataSet databaseDataSet = getConnection().createDataSet(); //esta es toda la base de datos
+			
+			ITable actualTable = databaseDataSet.getTable("Estudiante");
+			
+			//Leer el archivo con el resultado esperado
+			IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/resources/update_result.xml"));
+			ITable expectedTable = expectedDataSet.getTable("Estudiante");
+			
+			Assertion.assertEquals(expectedTable, actualTable);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			fail("Error in insert ttest: " + e.getMessage());
+		}
+	}
+	
+	
+
+	
 	
 	@Test
 	public void testCrearCompararQuery() {
@@ -295,24 +356,7 @@ public class DAOEstudianteSqlLiteTest extends TestCase{
 		}
 	}
 	
-	@Test
-	public void testFind() {
-		Estudiante alumno;
-		alumno = daoSQLite.findEstudiante(0);
-		
-		try {
-			ITable actualTable = getConnection().createQueryTable(
-	                "Estudiante",
-	                "SELECT * FROM Estudiante WHERE id = 1"); //tabla con los resultados del query
-			assertThat(alumno.getApellido(), is (actualTable.getValue(1, "apellido")));
-			assertThat(alumno.getCarrera(), is (actualTable.getValue(1, "carrera")));
-			assertThat(alumno.getNombre(), is (actualTable.getValue(1, "nombre")));
-		} catch (Exception e) {
-			// TODO: handle exception
-			fail("Error in insert ttest: " + e.getMessage());
-		}
-	}
+	
 	*/
 	
-	//hacer borrar y editar
 }

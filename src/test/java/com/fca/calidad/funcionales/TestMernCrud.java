@@ -1,27 +1,17 @@
 package com.fca.calidad.funcionales;
 
-
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.junit.runner.OrderWith;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.runners.*;
-import org.apache.commons.io.FileUtils;
-import java.io.File;
 import java.time.Duration;
 
-
-/*import org.junit.Test;
+import org.junit.Test;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
  
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)*/
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 
 public class TestMernCrud {
@@ -41,7 +31,7 @@ public class TestMernCrud {
 
   //TestCrear
   	@Test
-    public void firstTestMernCrudAgregar() throws Exception {
+    public void aTestMernCrudAgregar() throws Exception {
     //ERROR: Caught exception [unknown command []]
     driver.get("http://mern-crud.herokuapp.com/");
     pause(30);
@@ -62,7 +52,7 @@ public class TestMernCrud {
   
   //Test Editar
   @Test
-  public void secondtestMernCrudEditar() throws Exception {
+  public void btestMernCrudEditar() throws Exception {
 	  driver.get("https://mern-crud.herokuapp.com/");
 	    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button")).click();
 	    driver.findElement(By.name("name")).click();
@@ -80,7 +70,7 @@ public class TestMernCrud {
 	    driver.findElement(By.xpath("//i")).click();
   }
   @Test
-  public void fourTestMernCrudBuscar() throws Exception {
+  public void dTestMernCrudBuscar() throws Exception {
 
 	  
   }
@@ -88,7 +78,7 @@ public class TestMernCrud {
   
 
   @Test
-  public void thirdTestMernCrudEliminar() throws Exception {
+  public void cTestMernCrudEliminar() throws Exception {
 
 	  driver.get("https://mern-crud.herokuapp.com/");
 	    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button[2]")).click();
