@@ -16,17 +16,13 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.time.Duration;
 
-<<<<<<< HEAD
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-=======
+
 /*import org.junit.Test;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
  
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)*/
 
-
->>>>>>> ac888d8b55524192bd33c431e3af7cc0e5c5416f
 
 public class TestMernCrud {
   private WebDriver driver;
@@ -44,16 +40,11 @@ public class TestMernCrud {
   }
 
   //TestCrear
-  @Test
-<<<<<<< HEAD
-  public void firstTestMernCrudAgregar() throws Exception {
-    driver.get("https://mern-crud.herokuapp.com/");
-=======
-  public void FirsttestMernCrudAgregar() throws Exception {
+  	@Test
+    public void firstTestMernCrudAgregar() throws Exception {
     //ERROR: Caught exception [unknown command []]
     driver.get("http://mern-crud.herokuapp.com/");
     pause(30);
->>>>>>> ac888d8b55524192bd33c431e3af7cc0e5c5416f
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]/button")).click();
     driver.findElement(By.name("name")).click();
     driver.findElement(By.name("name")).clear();
@@ -69,7 +60,6 @@ public class TestMernCrud {
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
   }
   
-<<<<<<< HEAD
   //Test Editar
   @Test
   public void secondtestMernCrudEditar() throws Exception {
@@ -89,32 +79,14 @@ public class TestMernCrud {
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
 	    driver.findElement(By.xpath("//i")).click();
   }
+  @Test
   public void fourTestMernCrudBuscar() throws Exception {
 
 	  
   }
-=======
-  /*@Test
-  public void SecondtestMernCrudEditar() throws Exception {
 
-	  System.out.println("Second test");
-	  
-	  
-  }*/
   
-  @Test
-  //public void ThirdtestMernCrudEliminar() throws Exception {
 
-	  
-	//  System.out.println("third Test");
-	  
-  //}
-  
- 
-  
->>>>>>> ac888d8b55524192bd33c431e3af7cc0e5c5416f
-  
-  
   @Test
   public void thirdTestMernCrudEliminar() throws Exception {
 
@@ -123,14 +95,6 @@ public class TestMernCrud {
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cristopher Martinez Perez'])[2]/following::button[1]")).click();
 	    
   }
-  
-  
-  
- 
-  
-  
-  
-  
 
   @After
   public void tearDown() throws Exception {
