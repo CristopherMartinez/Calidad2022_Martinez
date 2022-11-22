@@ -120,21 +120,30 @@ public class DAOEstudianteSqlLiteTest extends TestCase{
 			fail("Error in insert ttest: " + e.getMessage());
 		}
 	}
+	//TEST 
+	//CORRECTO
 	@Test
-	 public void testFind() throws Exception {
-		Estudiante alumno;
-		alumno = daoSQLite.findEstudiante(1);
+	 public void testBuscar()  {
+		Estudiante alumno = daoSQLite.findEstudiante(0);
+		
 		
 		try {
-			ITable actualTable = getConnection().createQueryTable(
-	                "Estudiante",
-	                "SELECT * FROM Estudiante WHERE id = 1"); //tabla con los resultados del query
-			assertThat(alumno.getApellido(), is (actualTable.getValue(1, "apellido")));
-			assertThat(alumno.getCarrera(), is (actualTable.getValue(1, "carrera")));
-			assertThat(alumno.getNombre(), is (actualTable.getValue(1, "nombre")));
 			
-			//verificar
-					
+			//Declaramos variables que nos sirven para ejecutar el Query
+			String tabla = "Estudiante";
+			String sentencia = "SELECT * FROM estudiante where id = 0";
+			
+			ITable actualTable = getConnection().createQueryTable(tabla,sentencia);
+			
+			//Comparamos con la tabla 
+			assertThat(alumno.getNombre(), is (actualTable.getValue(0, "nombre")));
+			assertThat(alumno.getApellido(), is (actualTable.getValue(0, "apellido")));
+			assertThat(alumno.getEmail(), is (actualTable.getValue(0, "email")));
+			assertThat(alumno.getCarrera(), is (actualTable.getValue(0, "carrera")));
+		
+			//Imprimimos el estudiante
+			System.out.println("Estudiante: " + actualTable.getValue(0, "nombre"));
+			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -142,27 +151,56 @@ public class DAOEstudianteSqlLiteTest extends TestCase{
 		}
 		}
 	
+	//TEST 
+	//CORRECTO
 	@Test
 	public void testUpdate() throws Exception{
-	 
-		DAOEstudianteSQLlite daoSQLite = new DAOEstudianteSQLlite ();
 		
-		Estudiante Estudiante2 = daoSQLite.findEstudiante(2);
+		Estudiante Estudiante2 = daoSQLite.findEstudiante(0);
 		Estudiante2.setEmail("martinezcristopher11@gmail.com");
 		daoSQLite.updateEmailEstudiante(Estudiante2);
 		
+		
+		try {
+			//Declaramos variables que nos sirven para ejecutar el Query
+			String tabla = "Estudiante";
+			String sentencia = "SELECT * FROM estudiante where id = 0";
+			
+			ITable actualTable = getConnection().createQueryTable(tabla,sentencia);
+			
+			//Se hace la comparacion de cada campo para determinar 
+			assertThat(Estudiante2.getNombre(), is(actualTable.getValue(0, "nombre")));
+			assertThat(Estudiante2.getApellido(), is(actualTable.getValue(0, "apellido")));			
+			assertThat(Estudiante2.getEmail(), is(actualTable.getValue(0, "email")));			
+			assertThat(Estudiante2.getCarrera(), is(actualTable.getValue(0, "carrera")));
+	
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			fail("Error in insert ttest: " + e.getMessage());
+		}
+	}
+	//CORRECTO
+	@Test
+	public void testEliminarAlumno() throws Exception{
+		
+		Estudiante Estudiante = daoSQLite.findEstudiante(0);
+		int idAlumno = Estudiante.getId();
+		daoSQLite.deleteEstudiante(idAlumno);
+		
 		//verify
 		try {
-			IDataSet databaseDataSet = getConnection().createDataSet(); //esta es toda la base de datos
+			//Declaramos variables que nos sirven para ejecutar el Query
+			String tabla = "Estudiante";
+			String sentencia = "SELECT * FROM estudiante where id = 0";
+			int result = 0;
 			
-			ITable actualTable = databaseDataSet.getTable("Estudiante");
+			//Ejecutamos el createQueryTable para traernos la tabla
+			ITable actualTable = getConnection().createQueryTable(tabla,sentencia);
 			
-			//Leer el archivo con el resultado esperado
-			IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/resources/update_result.xml"));
-			ITable expectedTable = expectedDataSet.getTable("Estudiante");
-			
-			Assertion.assertEquals(expectedTable, actualTable);
-			
+			//Comparamos los rows con el result
+			assertThat(actualTable.getRowCount(), is(result));
 			
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -34,15 +34,17 @@ public class TestMernCrud {
     public void aTestMernCrudAgregar() throws Exception {
     //ERROR: Caught exception [unknown command []]
     driver.get("http://mern-crud.herokuapp.com/");
-    pause(30);
+    pause(1500);
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]/button")).click();
     driver.findElement(By.name("name")).click();
     driver.findElement(By.name("name")).clear();
     driver.findElement(By.name("name")).sendKeys("Cristopher Martinez Bahena");
     driver.findElement(By.name("email")).click();
+    pause(1500);
     driver.findElement(By.name("email")).clear();
     driver.findElement(By.name("email")).sendKeys("martinezcristopher11@gmail.com");
     driver.findElement(By.name("age")).click();
+    pause(1500);
     driver.findElement(By.name("age")).clear();
     driver.findElement(By.name("age")).sendKeys("22");
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Gender'])[2]/following::div[2]")).click();
@@ -55,6 +57,7 @@ public class TestMernCrud {
   public void btestMernCrudEditar() throws Exception {
 	  driver.get("https://mern-crud.herokuapp.com/");
 	    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button")).click();
+	    pause(1500);
 	    driver.findElement(By.name("name")).click();
 	    driver.findElement(By.name("name")).clear();
 	    driver.findElement(By.name("name")).sendKeys("Cristopher Martinez Perez");
@@ -62,6 +65,7 @@ public class TestMernCrud {
 	    driver.findElement(By.name("email")).clear();
 	    driver.findElement(By.name("email")).sendKeys("martinezcristopher22@gmail.com");
 	    driver.findElement(By.name("age")).click();
+	    pause(1500);
 	    driver.findElement(By.name("age")).clear();
 	    driver.findElement(By.name("age")).sendKeys("24");
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Gender'])[2]/following::div[1]")).click();
@@ -71,8 +75,11 @@ public class TestMernCrud {
   }
   @Test
   public void dTestMernCrudBuscar() throws Exception {
-
-	  
+	  /*
+	  driver.get("https://mern-crud.herokuapp.com/");
+	  pause(30);
+	  assertTrue(driver.findElement(By.xpath("//*[text()='martinezcristopher22@gmail.com']")).isDisplayed());
+	  */
   }
 
   
@@ -82,6 +89,7 @@ public class TestMernCrud {
 
 	  driver.get("https://mern-crud.herokuapp.com/");
 	    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button[2]")).click();
+	    pause(1500);
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cristopher Martinez Perez'])[2]/following::button[1]")).click();
 	    
   }
